@@ -1,0 +1,9 @@
+Building S
+
+See doc/readme-qt.rst for instructions on building S QT,
+the intended-for-end-users, nice-graphical-interface, reference
+implementation of S.
+
+See doc/build-*.txt for instructions on building Sd,
+the intended-for-services, no-graphical-interface, reference
+implementation of S.
