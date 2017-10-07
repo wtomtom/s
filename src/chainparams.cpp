@@ -20,6 +20,30 @@ struct SeedSpec6 {
 
 #include "chainparamsseeds.h"
 
+void MineGenesis(CBlock genesis){
+    // This will figure out a valid hash and Nonce if you're creating a different genesis block:
+    uint256 hashTarget = CBigNum().SetCompact(Params().ProofOfWorkLimit().GetCompact()).getuint256();
+    printf("Target: %s\n", hashTarget.GetHex().c_str());
+    uint256 newhash = genesis.GetHash();
+    uint256 besthash;
+    memset(&besthash,0xFF,32);
+    while (newhash > hashTarget) {
+    	++genesis.nNonce;
+        if (genesis.nNonce == 0){
+            printf("NONCE WRAPPED, incrementing time");
+            ++genesis.nTime;
+        }
+	newhash = genesis.GetHash();
+	if(newhash < besthash){
+	    besthash=newhash;
+	    printf("New best: %s\n", newhash.GetHex().c_str());
+	}
+    }
+    printf("Found Genesis, Nonce: %ld, Hash: %s\n", genesis.nNonce, genesis.GetHash().GetHex().c_str());
+    printf("Gensis Hash Merkle: %s\n", genesis.hashMerkleRoot.ToString().c_str());
+}
+
+
 //
 // Main network
 //
@@ -52,7 +76,7 @@ public:
         pchMessageStart[1] = 0x39;
         pchMessageStart[2] = 0x26;
         pchMessageStart[3] = 0x09;
-        vAlertPubKey = ParseHex("");
+        vAlertPubKey = ParseHex("MHQCAQEEIC6DrNq376AmHcq8ACkmZ0YWWAl1WmM8Lw81q4Rd+KWuoAcGBSuBBAAKoUQDQgAENz8SChZ4pKy2QIcilWSxi3OaIXpJA64XHPM7oPFK2e4UvyhmiP0lByzjwiZnWX5/Wli1CUgQVj6FIE7tduaVTA==");
         nDefaultPort = 36178;
         nRPCPort = 36174;
         bnProofOfWorkLimit = CBigNum(~uint256(0) >> 20);
@@ -79,29 +103,15 @@ public:
         genesis.nVersion = 1;
         genesis.nTime    = 1507342576;
         genesis.nBits    = bnProofOfWorkLimit.GetCompact();
-        genesis.nNonce   = 0;
-
+        genesis.nNonce   = 674887;
+		
         hashGenesisBlock = genesis.GetHash();
 
-        assert(hashGenesisBlock == uint256(""));
-        assert(genesis.hashMerkleRoot == uint256(""));
+        assert(hashGenesisBlock == uint256("00000f791a7927d890d773c39c9b47ed514bd2572dda4c4d4966062e184e16bb"));
+        assert(genesis.hashMerkleRoot == uint256("78a19fc056b0c0c7e0842cdb09b66cf6c17965b159395d7f5fce416f310f5459"));
 		
-		hashGenesisBlock = uint256("0x01")
-if (true && genesis.GetHash() != hashGenesisBlock)
-        {
-            Logprintf("recalculating params for mainnet.\n");
-            Logprintf("old mainnet genesis nonce: %s\n", genesis.nNonce.ToString().c_str());
-            Logprintf("old mainnet genesis hash:  %s\n", hashGenesisBlock.ToString().c_str());
-            // deliberately empty for loop finds nonce value.
-            for(genesis.nNonce == 0; genesis.GetHash() > bnProofOfWorkLimit; genesis.nNonce++){ } 
-            Logprintf("new mainnet genesis merkle root: %s\n", genesis.hashMerkleRoot.ToString().c_str());
-            Logprintf("new mainnet genesis nonce: %s\n", genesis.nNonce.ToString().c_str());
-            Logprintf("new mainnet genesis hash: %s\n", genesis.GetHash().ToString().c_str());
-        }
-		
-       
-	    vFixedSeeds.clear();
-        vSeeds.clear();
+		       
+	   	vSeeds.push_back(CDNSSeedData("192.168.0.18", "192.168.0.18"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 63);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 125);
@@ -142,19 +152,19 @@ public:
         pchMessageStart[2] = 0x24;
         pchMessageStart[3] = 0x15;
         bnProofOfWorkLimit = CBigNum(~uint256(0) >> 16);
-        vAlertPubKey = ParseHex("");
+        vAlertPubKey = ParseHex("MHQCAQEEIE6A+u3qaDyMtrw7eX+eNEP5RgGuIxlIe9vWJ2bbdOHFoAcGBSuBBAAKoUQDQgAE5rIZijp1usY9wSn2XvbKuGG5IFI4KyTSP7PyW9hlYnA4lbAC6284c/Nu5cq3Prln6wRQ/c34qCM2Fkyo0l76eg==");
         nDefaultPort = 36178;
         nRPCPort = 36174;
 
         strDataDir = "testnet";
         // Modify the testnet genesis block so the timestamp is valid for a later start.
         genesis.nBits  = bnProofOfWorkLimit.GetCompact();
-        genesis.nNonce = 0;
+        genesis.nNonce = 674887;
         genesis.nTime    = 1507342576;
   
         hashGenesisBlock = genesis.GetHash();
          
-        assert(hashGenesisBlock == uint256(""));
+        assert(hashGenesisBlock == uint256("00000f791a7927d890d773c39c9b47ed514bd2572dda4c4d4966062e184e16bb"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -188,12 +198,12 @@ public:
         bnProofOfWorkLimit = CBigNum(~uint256(0) >> 1);
         genesis.nTime = 1507342576;
         genesis.nBits  = bnProofOfWorkLimit.GetCompact();
-        genesis.nNonce = 0;
+        genesis.nNonce = 674887;
         hashGenesisBlock = genesis.GetHash();
         nDefaultPort = 28444;
         strDataDir = "regtest";
 //        MineGenesis(genesis);
-        assert(hashGenesisBlock == uint256(""));
+        assert(hashGenesisBlock == uint256("00000f791a7927d890d773c39c9b47ed514bd2572dda4c4d4966062e184e16bb"));
 
         vSeeds.clear();  // Regtest mode doesn't have any DNS seeds.
     }
