@@ -101,10 +101,11 @@ public:
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
-        genesis.nTime    = 1507342576;
+        genesis.nTime    = 1507569518;
         genesis.nBits    = bnProofOfWorkLimit.GetCompact();
         genesis.nNonce   = 0;
 		
+	    MineGenesis(genesis);
         hashGenesisBlock = genesis.GetHash();
 
         assert(hashGenesisBlock == uint256("0x"));
@@ -160,8 +161,9 @@ public:
         // Modify the testnet genesis block so the timestamp is valid for a later start.
         genesis.nBits  = bnProofOfWorkLimit.GetCompact();
         genesis.nNonce = 0;
-        genesis.nTime    = 1507342576;
+        genesis.nTime    = 1507569518;
 		 
+	    // MineGenesis(genesis);
         hashGenesisBlock = genesis.GetHash();
          
         assert(hashGenesisBlock == uint256("0x"));
@@ -196,7 +198,7 @@ public:
         pchMessageStart[2] = 0xb9;
         pchMessageStart[3] = 0xdb;
         bnProofOfWorkLimit = CBigNum(~uint256(0) >> 1);
-        genesis.nTime = 1507342576;
+        genesis.nTime = 1507569518;
         genesis.nBits  = bnProofOfWorkLimit.GetCompact();
         genesis.nNonce = 0;
         hashGenesisBlock = genesis.GetHash();
