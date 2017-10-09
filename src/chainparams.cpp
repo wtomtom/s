@@ -76,7 +76,7 @@ public:
         pchMessageStart[1] = 0x39;
         pchMessageStart[2] = 0x26;
         pchMessageStart[3] = 0x09;
-        vAlertPubKey = ParseHex("MHQCAQEEIC6DrNq376AmHcq8ACkmZ0YWWAl1WmM8Lw81q4Rd+KWuoAcGBSuBBAAKoUQDQgAENz8SChZ4pKy2QIcilWSxi3OaIXpJA64XHPM7oPFK2e4UvyhmiP0lByzjwiZnWX5/Wli1CUgQVj6FIE7tduaVTA==");
+        vAlertPubKey = ParseHex("");
         nDefaultPort = 36178;
         nRPCPort = 36174;
         bnProofOfWorkLimit = CBigNum(~uint256(0) >> 20);
@@ -89,7 +89,7 @@ public:
         //    CTxIn(COutPoint(0000000000, 4294967295), coinbase 00012a24323020466562203230313420426974636f696e2041544d7320636f6d6520746f20555341)
         //    CTxOut(empty)
         //  vMerkleTree: 12630d16a9
-        const char* pszTimestamp = "Air France Tests Blockchain for Supply Chain Tracking";
+        const char* pszTimestamp = "Regulated Cryptocurrency Betting Just Got a Big Boost in Europe";
         std::vector<CTxIn> vin;
         vin.resize(1);
         vin[0].scriptSig = CScript() << 0 << CBigNum(42) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
@@ -103,12 +103,12 @@ public:
         genesis.nVersion = 1;
         genesis.nTime    = 1507342576;
         genesis.nBits    = bnProofOfWorkLimit.GetCompact();
-        genesis.nNonce   = 674887;
+        genesis.nNonce   = 0;
 		
         hashGenesisBlock = genesis.GetHash();
 
-        assert(hashGenesisBlock == uint256("0x00000f791a7927d890d773c39c9b47ed514bd2572dda4c4d4966062e184e16bb"));
-        assert(genesis.hashMerkleRoot == uint256("0x78a19fc056b0c0c7e0842cdb09b66cf6c17965b159395d7f5fce416f310f5459"));
+        assert(hashGenesisBlock == uint256("0x"));
+        assert(genesis.hashMerkleRoot == uint256("0x"));
 		
 		       
 	   	vSeeds.push_back(CDNSSeedData("192.168.0.18", "192.168.0.18"));
@@ -121,7 +121,7 @@ public:
 
         convertSeed6(vFixedSeeds, pnSeed6_main, ARRAYLEN(pnSeed6_main));
 
-        nLastPOWBlock = 12500;
+        nLastPOWBlock = 100;
     }
 
     virtual const CBlock& GenesisBlock() const { return genesis; }
@@ -152,19 +152,19 @@ public:
         pchMessageStart[2] = 0x24;
         pchMessageStart[3] = 0x15;
         bnProofOfWorkLimit = CBigNum(~uint256(0) >> 16);
-        vAlertPubKey = ParseHex("MHQCAQEEIE6A+u3qaDyMtrw7eX+eNEP5RgGuIxlIe9vWJ2bbdOHFoAcGBSuBBAAKoUQDQgAE5rIZijp1usY9wSn2XvbKuGG5IFI4KyTSP7PyW9hlYnA4lbAC6284c/Nu5cq3Prln6wRQ/c34qCM2Fkyo0l76eg==");
-        nDefaultPort = 36178;
-        nRPCPort = 36174;
+        vAlertPubKey = ParseHex("");
+        nDefaultPort = 46178;
+        nRPCPort = 46174;
 
         strDataDir = "testnet";
         // Modify the testnet genesis block so the timestamp is valid for a later start.
         genesis.nBits  = bnProofOfWorkLimit.GetCompact();
-        genesis.nNonce = 919452;
+        genesis.nNonce = 0;
         genesis.nTime    = 1507342576;
 		 
         hashGenesisBlock = genesis.GetHash();
          
-        assert(hashGenesisBlock == uint256("0x00000e9e2654411156cdab5c35790e90157902d2c0bb86867251cc672cfd9083"));
+        assert(hashGenesisBlock == uint256("0x"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -198,13 +198,13 @@ public:
         bnProofOfWorkLimit = CBigNum(~uint256(0) >> 1);
         genesis.nTime = 1507342576;
         genesis.nBits  = bnProofOfWorkLimit.GetCompact();
-        genesis.nNonce = 777775;
+        genesis.nNonce = 0;
         hashGenesisBlock = genesis.GetHash();
         nDefaultPort = 28444;
         strDataDir = "regtest";
 
 //		MineGenesis(genesis);
-        assert(hashGenesisBlock == uint256("0x00000c3e17847161df7fd72936db2e51712c158e1de52776b8ede61cff171d62"));
+        assert(hashGenesisBlock == uint256("0x"));
 
         vSeeds.clear();  // Regtest mode doesn't have any DNS seeds.
     }
