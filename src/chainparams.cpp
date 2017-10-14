@@ -96,20 +96,20 @@ public:
         std::vector<CTxOut> vout;
         vout.resize(1);
         vout[0].SetEmpty();
-        CTransaction txNew(1, 1507996911, vin, vout, 0);
+        CTransaction txNew(1, 1507997562, vin, vout, 0);
         genesis.vtx.push_back(txNew);
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
-        genesis.nTime    = 1507996911;
+        genesis.nTime    = 1507997562;
         genesis.nBits    = bnProofOfWorkLimit.GetCompact();
-        genesis.nNonce   = 0;
-		
-	    MineGenesis(genesis);
+        genesis.nNonce   = 7816;
+				
+	    //MineGenesis(genesis);
         hashGenesisBlock = genesis.GetHash();
 
-        assert(hashGenesisBlock == uint256("0x"));
-        assert(genesis.hashMerkleRoot == uint256("0x"));
+        assert(hashGenesisBlock == uint256("0x000007b10c27856bd529f2c828fb0a6330706da153083a5543c81a1718bd64a8"));
+        assert(genesis.hashMerkleRoot == uint256("0xb619bc7a38eb6a68527286513040287b875a8ad546e15bc3e1f5579e9e20f8f3"));
 		
 		       
 	   	vSeeds.push_back(CDNSSeedData("192.168.0.18", "192.168.0.18"));
