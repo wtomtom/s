@@ -89,26 +89,27 @@ public:
         //    CTxIn(COutPoint(0000000000, 4294967295), coinbase 00012a24323020466562203230313420426974636f696e2041544d7320636f6d6520746f20555341)
         //    CTxOut(empty)
         //  vMerkleTree: 12630d16a9
-        const char* pszTimestamp = "Regulated Cryptocurrency Betting Just Got a Big Boost in Europe";
+        const char* pszTimestamp = "Logical or Not, Bitcoin's Coming Fork Is Boosting Its Price";
         std::vector<CTxIn> vin;
         vin.resize(1);
         vin[0].scriptSig = CScript() << 0 << CBigNum(42) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
         std::vector<CTxOut> vout;
         vout.resize(1);
         vout[0].SetEmpty();
-        CTransaction txNew(1, 1507342576, vin, vout, 0);
+        CTransaction txNew(1, 1507996911, vin, vout, 0);
         genesis.vtx.push_back(txNew);
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
-        genesis.nTime    = 1507569518;
+        genesis.nTime    = 1507996911;
         genesis.nBits    = bnProofOfWorkLimit.GetCompact();
-        genesis.nNonce   = 1166811;
+        genesis.nNonce   = 0;
 		
+	    MineGenesis(genesis);
         hashGenesisBlock = genesis.GetHash();
 
-        assert(hashGenesisBlock == uint256("0x000000a7b5876949a7ba3eebed76b05a8d5bc942a892f1eb2241f5600ec7fd51"));
-        assert(genesis.hashMerkleRoot == uint256("0x0bd5d17e975ebc3e7294ffa3657854e33b8485ee10498f714c9f37c370788d4d"));
+        assert(hashGenesisBlock == uint256("0x"));
+        assert(genesis.hashMerkleRoot == uint256("0x"));
 		
 		       
 	   	vSeeds.push_back(CDNSSeedData("192.168.0.18", "192.168.0.18"));
@@ -164,7 +165,7 @@ public:
 		 		
         hashGenesisBlock = genesis.GetHash();
          
-        assert(hashGenesisBlock == uint256("0x00000d2540f8e1612cf6c80fb8ec81ffb75b087bb531c909dbdb8cd5c09fee83"));
+        //assert(hashGenesisBlock == uint256("0x00000d2540f8e1612cf6c80fb8ec81ffb75b087bb531c909dbdb8cd5c09fee83"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -204,7 +205,7 @@ public:
         strDataDir = "regtest";
 		
 //		MineGenesis(genesis);
-        assert(hashGenesisBlock == uint256("0x000004d085b6c46fedd99e7f9c152322b341243723ad104dafc99db23885a125"));
+       // assert(hashGenesisBlock == uint256("0x000004d085b6c46fedd99e7f9c152322b341243723ad104dafc99db23885a125"));
 
         vSeeds.clear();  // Regtest mode doesn't have any DNS seeds.
     }
